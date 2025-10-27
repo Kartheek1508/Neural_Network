@@ -1,7 +1,7 @@
 import numpy as np
 
 class NeuralNetwork():
-    def __init__(self,input_size, hidden_size, output_size, learning_rate = 0.1):
+    def __init__(self,input_size, hidden_size, output_size, learning_rate = 0.5):
         self.W1 =  np.random.randn(input_size, hidden_size)
         self.b1 = np.zeros((1,hidden_size))
         self.W2 = np.random.randn(hidden_size,output_size)
@@ -59,7 +59,7 @@ class NeuralNetwork():
     # Test the network
 if __name__ == "__main__":
     # Create a simple network: 2 inputs, 3 hidden neurons, 1 output
-    nn = NeuralNetwork(2, 3, 1, learning_rate=0.1)
+    nn = NeuralNetwork(2, 3, 1, learning_rate=0.5)
     
     # Create some test data (XOR problem)
     X = np.array([[0, 0],
@@ -77,7 +77,7 @@ if __name__ == "__main__":
     print("=" * 50)
     
     # Training loop
-    epochs = 10000
+    epochs = 15000
     for epoch in range(epochs):
         # Forward pass
         predictions = nn.forward(X)
