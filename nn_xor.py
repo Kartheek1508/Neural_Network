@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as pl
 
 class NeuralNetwork():
     def __init__(self,input_size, hidden_size, output_size, learning_rate = 0.5):
@@ -76,6 +77,7 @@ if __name__ == "__main__":
     print("Training the neural network on XOR problem...")
     print("=" * 50)
     
+    loss_his = []
     # Training loop
     epochs = 15000
     for epoch in range(epochs):
@@ -87,7 +89,7 @@ if __name__ == "__main__":
         
         # Backward pass (update weights)
         nn.backward(y_true, predictions)
-        
+        loss_his.append(loss)
         # Print progress every 1000 epochs
         if epoch % 1000 == 0:
             print(f"Epoch {epoch}, Loss: {loss:.4f}")
@@ -108,5 +110,14 @@ if __name__ == "__main__":
     
     print(f"\nFinal predictions (raw): {final_predictions.flatten()}")
     print(f"True labels: {y_true.flatten()}")
+
+    pl.figure(figsize=(8, 5))
+    pl.plot(loss_his, label='Training Loss')
+    pl.xlabel('Epochs')
+    pl.ylabel('Loss')
+    pl.title('Neural Network Training Loss on XOR Problem')
+    pl.legend()
+    pl.grid(True)
+    pl.show()
 
     
